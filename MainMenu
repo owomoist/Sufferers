@@ -1,0 +1,30 @@
+import mayflower.*;
+
+public class MainMenu extends World
+{
+    Button topic1;
+    boolean started = false;
+    PomodoroTimer timer;
+    
+    public MainMenu()
+    {
+        //setBackground(new MayflowerImage(1000, 1000));
+        showText("choose your topic", 50, 50, Color.MEGENTA);
+        timer = new PomodoroTimer(1);
+    }
+    
+    public void addObjects()
+    {
+        topic1 = new Button("img/mouse cursor.png", "factoring", 50, 100);
+        addObject(topic1, topic1.getX(), topic1.getY());
+    }
+    
+    public void act()
+    {
+        if(!started && timer.getSecondsElapsed() >= 1)
+        {
+            addObjects();
+            started = true;
+        }
+    }
+}
