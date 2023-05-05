@@ -14,6 +14,7 @@ public class Button extends Actor
     
     public void onClick()
     {
-        
+        World w = getWorld();
+        w.removeObject(this);
     }
 }
