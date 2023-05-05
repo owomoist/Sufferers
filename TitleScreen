@@ -10,15 +10,18 @@ public class TitleScreen extends World
         showText("ixl", 500, 500, Color.MEGENTA);
         startButton = new Button("img/start.jpg");
         addObject(startButton, 500, 510);
-        mouse = new MouseInfo(startButton, Mouse.LEFT_BUTTON, 0, 0, 0);
         System.out.println("done");
+        
+        //Timer timer = new Timer(60000)
     }
     
     public void act()
     {
-        if(mouse.getActor().equals(startButton))
+        mouse = Mayflower.getMouseInfo();
+        if(mouse.getActor() != null && mouse.getActor().equals(startButton))
         {
             System.out.println("clicked");
+            startButton.onClick();
         }
     }
 }
