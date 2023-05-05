@@ -1,20 +1,28 @@
 import mayflower.*;
 
 public class Button extends Actor
-{
+{   MouseInfo mouse;
+    
     public Button(String imgFile)
     {
         setImage(imgFile);
+        mouse = Mayflower.getMouseInfo();
     }
     
     public void act()
     {
-        
+        mouse = Mayflower.getMouseInfo();
     }
     
     public void onClick()
     {
         World w = getWorld();
         w.removeObject(this);
+    }
+    
+    public boolean clicked()
+    {
+        return mouse.getActor() != null && mouse.getActor().equals(this)
+            && Mayflower.mouseClicked(this);
     }
 }
