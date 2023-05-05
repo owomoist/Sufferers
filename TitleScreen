@@ -4,6 +4,8 @@ public class TitleScreen extends World
 {
     Button startButton;
     MouseInfo mouse;
+    PomodoroTimer timer;
+    
     public TitleScreen()
     {
         setBackground(new MayflowerImage(1000, 1000));
@@ -12,12 +14,13 @@ public class TitleScreen extends World
         addObject(startButton, 500, 510);
         System.out.println("done");
         
-        //Timer timer = new Timer(60000)
+        timer = new PomodoroTimer(25);
     }
     
     public void act()
     {
         mouse = Mayflower.getMouseInfo();
+        showText("" + timer.getFormattedTime(), 30, 30, Color.ORANGE);
         if(mouse.getActor() != null && mouse.getActor().equals(startButton))
         {
             System.out.println("clicked");
