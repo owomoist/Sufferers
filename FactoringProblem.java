@@ -20,7 +20,7 @@ public class FactoringProblem extends World
     {
         showText("Factoring", 50, 50, Color.MEGENTA);
         sc = new Scanner("factoring.txt");
-        duration = 0.1;
+        duration = 0.05;
         timer = new PomodoroTimer(duration);
         numCoins = coinTransfer + (int)(Math.ceil(duration));
     }
@@ -36,20 +36,6 @@ public class FactoringProblem extends World
         breakButton = new Button("img/mouse cursor.png", "Take a Break", 50, 200, Color.GRAY);
         addObject(breakButton, breakButton.getX(), breakButton.getY());
         breakButton.active = false;
-    }
-    
-    public void act()
-    {
-        if(!started)
-        {
-            addObjects();
-            started = true;
-        }
-        
-        updateTimer();
-        
-        if(timer.getSecondsLeft() >= 0 && breakButton.clicked())
-            WorldTracker.setCurrentWorld(new Darts(numCoins));
     }
     
     public void updateTimer()
@@ -68,5 +54,20 @@ public class FactoringProblem extends World
                 breakButton.setActive(true);
             }
         }
+    }
+    
+    
+    public void act()
+    {
+        if(!started)
+        {
+            addObjects();
+            started = true;
+        }
+        
+        updateTimer();
+        
+        if(breakButton.clicked())
+            WorldTracker.setCurrentWorld(new Darts(numCoins));
     }
 }
