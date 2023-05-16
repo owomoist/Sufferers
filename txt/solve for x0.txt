@@ -1,0 +1,27 @@
+hint
+use SADMEP
+hint
+expand the polynomial
+hint
+factor
+hint
+set both factors to 0
+question
+solve √(x + 2) - 3 = 2x
+hint 0
+step
+√(x + 2) = 2x + 3
+step
+x + 2 = (2x + 3)^2
+hint 1
+step
+x + 2 = 4x^2 + 12x + 9
+step
+0 = 4x^2 + 11x + 7
+hint 2
+step
+0 = (x + 1)(4x + 7)
+step
+x + 1 = 0 or 4x + 7 = 0
+answer
+x = -1 or x = -7/4

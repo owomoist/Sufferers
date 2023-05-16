@@ -1,0 +1,11 @@
+hint
+use FOIL (first, outer, inner, last)
+question
+expand (2x + 3)(5x - 8)
+hint 0
+step
+(2x)(5x) + (2x)(-8) + (3)(5x) + (3)(-8)
+step
+10x^2 - 16x + 15x - 24
+answer
+10x^2 - x - 24

@@ -1,0 +1,14 @@
+hint
+seperate the middle variable so that we can group it with the first and last variable
+hint
+factor out the common factor
+question
+factor 6x^2 + 11x - 10
+hint 0
+step
+6x^2 + 15x - 4x - 10
+step
+3x (2x + 5) - 2 (2x + 5)
+hint 1
+answer
+(3x - 2)(2x + 5)

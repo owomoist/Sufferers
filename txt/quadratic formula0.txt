@@ -1,0 +1,14 @@
+hint
+identify a, b, & c
+hint
+quadratic equation: x = (-b ± (b² - 4ac))/(2a)
+question
+solve x^2 + 5x + 6 using the quadratic formula
+hint 0
+step
+a = 1, b = 5, c = 6
+hint 1
+step
+x = (-5 ± (5² - 4 * 1 * 6))/(2 * 1)
+answer
+x = -2 and -3
