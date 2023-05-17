@@ -27,72 +27,57 @@ class RussianRoulette extends TimedWorld {
 
     public void act() {
         if(Mayflower.isKeyPressed(Keyboard.KEY_SPACE))
-            b = true;
-        if(b) {
-            if(coinsNow != coins) {
-                removeText(50, 950);
+        b = true;
+         if(b) {
+         if(coinsNow != coins) {
+             removeText(50, 950);
                 showText("Coins: " + coins, 50, 950, Color.MEGENTA);
-            }
-            super.act();
-            if(t.isDone()) {
+         }
+          coinsNow = coins;
+          super.act();
+         if(t.isDone()) {
                 if(n > 0)
-                    n -= .02;
-                if(n < 0)
-                    n = 0;
-                spin.image.rotate(n);
-                spin.setImage(spin.image);
-            }
-            if(rotation == spin.image.getRotation()) {
+                   n -= .02;
+              if(n < 0)
+                  n = 0;
+              spin.image.rotate(n);
+              spin.setImage(spin.image);
+          }
+           if(rotation == spin.image.getRotation()) {
                 if(rotation >= 337.5 && rotation <= 22.5) {
-                    if(coinsNow == coins)
-                    coins += 3;
-                    //System.out.println("gray");
+                   coins += 10;
+               }
+               if(rotation > 22.5 && rotation <= 67.5) {
+                   coins += 3;
+               }
+               if(rotation > 67.5 && rotation <= 112.5) {
+                   coins = 0;
+               }
+               if(rotation > 112.5 && rotation < 157.5) {
+                   coins += 3;
+               }
+               if(rotation >= 157.5 && rotation <= 202.5) {
+                   coins = 0;
+               }
+              if(rotation > 202.5 && rotation <= 247.5) {
+                  coins += 3;
+               }
+               if(rotation > 247.5 && rotation <= 292.5) {
+                   coins *= 2;
                 }
-                if(rotation > 22.5 && rotation <= 67.5) {
-                    if(coinsNow == coins)
-                    coins += 3;
-                    //System.out.println("green");
-                }
-                if(rotation > 67.5 && rotation <= 112.5) {
-                    if(coinsNow == coins)
-                    coins = 0;
-                    //System.out.println("blue");
-                }
-                if(rotation > 112.5 && rotation < 157.5) {
-                    if(coinsNow == coins)
-                    coins += 3;
-                    //System.out.println("purple");
-                }
-                if(rotation >= 157.5 && rotation <= 202.5) {
-                    if(coinsNow == coins)
-                    coins = 0;
-                    //System.out.println("pink");
-                }
-                if(rotation > 202.5 && rotation <= 247.5) {
-                    if(coinsNow == coins)
-                    coins += 3;
-                    //System.out.println("red");
-                }
-                if(rotation > 247.5 && rotation <= 292.5) {
-                    if(coinsNow == coins)
-                    coins *= 2;
-                    //System.out.println("orange");
-                }
-                if(rotation > 292.5 && rotation < 337.5) {
-                    if(coinsNow == coins)
-                    coins = 0;
-                    //System.out.println("yellow");
-                }
-                if(Mayflower.isKeyPressed(Keyboard.KEY_SPACE)) {
-                    
-                }
-            } else {
-                rotation = spin.image.getRotation();
-                }
-            if(timer.getSecondsLeft() < 0)
-            {
-                WorldTracker.setCurrentWorld(new MainMenu(coins));
+               if(rotation > 292.5 && rotation < 337.5) {
+                  coins = 0;
+               }
+              if(Mayflower.isKeyPressed(Keyboard.KEY_SPACE))
+              WorldTracker.setCurrentWorld(new RussianRoulette(coins));
+         } else {
+            rotation = spin.image.getRotation();
+          }
+         spin.setRotation(337);
+         if(timer.getSecondsLeft() < 0)
+          {
+             WorldTracker.setCurrentWorld(new MainMenu(coins));
             }
-        }
+                }
     }
 }

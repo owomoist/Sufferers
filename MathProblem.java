@@ -140,9 +140,10 @@ public class MathProblem extends TimedWorld
             breakButton.changeColor(Color.BLACK);
             breakButton.setActive(true);
         }
-        int ranNum;
+        
         if(breakButton.clicked())
         {
+            int ranNum;
             ranNum = (int)(Math.random() * 2); // for array of 2 games
             WorldTracker.setCurrentWorld(arr.get(ranNum));
         }
