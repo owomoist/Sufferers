@@ -26,7 +26,7 @@ class RussianRoulette extends TimedWorld {
     }
 
     public void act() {
-        if(Keyboard.KEY_SPACE.isPressed())
+        if(Mayflower.isKeyPressed(Keyboard.KEY_SPACE))
         b = true;
          if(b) {
          if(coinsNow != coins) {
@@ -68,8 +68,8 @@ class RussianRoulette extends TimedWorld {
                if(rotation > 292.5 && rotation < 337.5) {
                   coins = 0;
                }
-              if(Keyboard.KEY_SPACE.isPressed())
-               WorldTracker.setCurrentWorld(new RussianRoulette(coins));
+              if(Mayflower.isKeyPressed(Keyboard.KEY_SPACE))
+              WorldTracker.setCurrentWorld(new RussianRoulette(coins));
          } else {
             rotation = spin.image.getRotation();
           }
