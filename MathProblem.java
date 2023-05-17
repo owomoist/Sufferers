@@ -141,9 +141,7 @@ public class MathProblem extends TimedWorld
             breakButton.setActive(true);
         }
         int ranNum;
-        arr.set(1, new Darts(numCoins));
-        arr.set(0, new RussianRoulette(numCoins));
-        if(timer.getSecondsLeft() < 0)
+        if(breakButton.clicked())
         {
             ranNum = (int)(Math.random() * 2); // for array of 2 games
             WorldTracker.setCurrentWorld(arr.get(ranNum));
