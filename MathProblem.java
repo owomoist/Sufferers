@@ -8,54 +8,57 @@ public class MathProblem extends TimedWorld
     private ArrayList<String> hints, steps;
     private String answer;
     private int stepNum, lineNum;
-    
+
     private Button nextButton, showAnswerButton, breakButton, refreshButton;
-    
+
     private int numCoins;
     private double duration;
     private String topic;
     private int topicNum;
-    
+
     private Scanner sc;
-    
+
     private boolean started;
-    
+    private ArrayList<World> arr;
     public MathProblem(double duration, int coinTransfer, String topic, int topicNum) throws Exception
     {
         super(duration);
-        
+        arr = new ArrayList<World>();
         showText(topic, 50, 50, Color.MEGENTA);
         this.topic = topic;
         this.topicNum = topicNum;
         sc = new Scanner(new File("txt/" + topic + topicNum + ".txt"));
-        
+
         if(topicNum == 0)
             numCoins = coinTransfer + (int)(Math.ceil(duration));
         else
             numCoins = coinTransfer;
-            
+
         System.out.println(numCoins);
-        
+
         hints = new ArrayList<String>(); steps = new ArrayList<String>();
         stepNum = lineNum = 0;
+
+        arr.add(new RussianRoulette(numCoins));
+        arr.add(new Darts(numCoins));
     }
-    
+
     private void addObjects()
     {
         nextButton = new Button("img/mouse cursor.png", "Next", 50, 100);
         addObject(nextButton, nextButton.getX(), nextButton.getY());
-        
+
         showAnswerButton = new Button("img/mouse cursor.png", "Show Answer", 400, 100);
         addObject(showAnswerButton, showAnswerButton.getX(), showAnswerButton.getY());
-        
+
         refreshButton = new Button("img/mouse cursor.png", "New Example", 50, 150);
         addObject(refreshButton, refreshButton.getX(), refreshButton.getY());
-        
+
         breakButton = new Button("img/mouse cursor.png", "Take a Break", 400, 150, Color.GRAY);
         addObject(breakButton, breakButton.getX(), breakButton.getY());
         breakButton.setActive(false);
     }
-    
+
     public void scanDoc()
     {
         String elem;
@@ -77,7 +80,7 @@ public class MathProblem extends TimedWorld
                 answer = sc.nextLine();
         }
     }
-    
+
     public void manageSteps()
     {
         if(nextButton.clicked())
@@ -107,10 +110,10 @@ public class MathProblem extends TimedWorld
                 showText("answer: " + answer, 50, 900, Color.BLACK);
                 showAnswerButton.setActive(false);
                 showAnswerButton.changeColor(Color.GRAY);
-                
+
             }
         }
-        
+
         if(showAnswerButton.clicked())
         {
             showText("answer: " + answer, 50, 900, Color.BLACK);
@@ -118,7 +121,7 @@ public class MathProblem extends TimedWorld
             showAnswerButton.changeColor(Color.GRAY);
         }
     }
-    
+
     public void act()
     {
         if(!started)
@@ -127,20 +130,25 @@ public class MathProblem extends TimedWorld
             scanDoc();
             started = true;
         }
-        
+
         super.act();
         manageSteps();
-        
+
         if(timer.getSecondsLeft() < 0)
         {
             showText("You got " + (int)(Math.ceil(duration)) + " coins!", 720, 150, Color.MEGENTA);
             breakButton.changeColor(Color.BLACK);
             breakButton.setActive(true);
         }
+        int ranNum;
+        arr.set(1, new Darts(numCoins));
+        arr.set(0, new RussianRoulette(numCoins));
+        if(timer.getSecondsLeft() < 0)
+        {
+            ranNum = (int)(Math.random() * 2); // for array of 2 games
+            WorldTracker.setCurrentWorld(arr.get(ranNum));
+        }
         
-        if(breakButton.clicked())
-            WorldTracker.setCurrentWorld(new Darts(numCoins)); // randomize??
-            
         if(refreshButton.clicked())
         {
             try
